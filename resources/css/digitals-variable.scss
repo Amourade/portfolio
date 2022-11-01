@@ -1,0 +1,92 @@
+
+//digital variables
+$book-height: 26px;
+$shelf-sides: 20px;
+
+$small-texture: url("Assets/images/digital/text-petite-min.png");
+$base-color: linear-gradient(
+    0deg,
+    rgba(85, 21, 10, 1) 0%,
+    rgba(155, 42, 23, 1) 21%,
+    rgba(155, 42, 23, 1) 99%,
+    rgba(255, 209, 201, 1) 100%
+);
+$color-bottom: radial-gradient(
+    circle,
+    rgba(129, 65, 133, 1) 0%,
+    rgba(86, 18, 89, 1) 69%,
+    rgba(19, 9, 19, 1) 100%
+);
+$top-side-gradient: linear-gradient(
+    0deg,
+    rgba(133, 13, 12, 1) 0%,
+    rgba(155, 42, 23, 1) 28%,
+    rgba(160, 52, 34, 1) 37%,
+    rgba(199, 115, 102, 1) 61%,
+    rgba(158, 48, 29, 1) 76%,
+    rgba(155, 42, 23, 1) 79%,
+    rgba(73, 40, 25, 1) 100%
+);
+$bottom-side-gradient: linear-gradient(
+    180deg,
+    rgba(133, 13, 12, 1) 0%,
+    rgba(155, 42, 23, 1) 28%,
+    rgba(160, 52, 34, 1) 37%,
+    rgba(199, 115, 102, 1) 48%,
+    rgba(158, 48, 29, 1) 76%,
+    rgba(155, 42, 23, 1) 79%,
+    rgba(73, 40, 25, 1) 100%
+);
+$right-side-gradient: linear-gradient(
+    90deg,
+    rgba(133, 13, 12, 1) 0%,
+    rgba(173, 36, 13, 1) 16%,
+    rgba(160, 52, 34, 1) 36%,
+    rgba(199, 115, 102, 1) 60%,
+    rgba(200, 49, 23, 1) 68%,
+    rgba(182, 43, 19, 1) 79%,
+    rgba(73, 40, 25, 1) 100%
+);
+$left-side-gradient: linear-gradient(
+    270deg,
+    rgba(186, 38, 37, 1) 0%,
+    rgba(173, 36, 13, 1) 16%,
+    rgba(204, 94, 76, 1) 61%,
+    rgba(212, 95, 78, 1) 71%,
+    rgba(200, 49, 23, 1) 76%,
+    rgba(182, 43, 19, 1) 79%,
+    rgba(73, 40, 25, 1) 100%
+);
+$top-gradient: linear-gradient(
+    0deg,
+    rgba(52, 38, 22, 1) 0%,
+    rgba(135, 73, 33, 1) 71%,
+    rgba(124, 79, 19, 1) 99%
+);
+$bottom-gradient: linear-gradient(
+    180deg,
+    rgba(71, 34, 14, 1) 0%,
+    rgba(190, 129, 34, 1) 71%,
+    rgba(212, 146, 59, 1) 99%
+);
+$left-gradient: linear-gradient(
+    270deg,
+    rgba(115, 81, 33, 1) 0%,
+    rgba(221, 193, 61, 1) 71%,
+    rgba(228, 209, 86, 1) 100%
+);
+$right-gradient: linear-gradient(
+    90deg,
+    rgba(52, 38, 22, 1) 0%,
+    rgba(106, 57, 26, 1) 71%,
+    rgba(78, 50, 12, 1) 99%
+);
+$title-gradient: linear-gradient(
+    90deg,
+    rgba(40, 35, 35, 1) 0%,
+    rgba(140, 140, 140, 1) 10%,
+    rgba(252, 255, 249, 1) 50%,
+    rgba(150, 150, 150, 1) 90%,
+    rgba(46, 43, 43, 1) 100%
+);
+//digital variable end
