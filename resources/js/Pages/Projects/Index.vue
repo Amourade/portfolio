@@ -114,6 +114,9 @@ defineProps({
             box-shadow: 0px 0px 0px 1px #9eb6ec,
                 20px 20px 20px rgba(0, 0, 0, 0.5);
 
+            display: grid;
+            grid-template-columns: 70% 30%;
+
             &:hover {
                 background-color: white;
                 box-shadow: 0px 0px 0px 1px black,
@@ -124,16 +127,7 @@ defineProps({
                 }
             }
 
-            &:after {
-                content: "";
-                display: table;
-                clear: both;
-            }
-
             .description {
-                float: left;
-                width: 70%;
-
                 h3 {
                     margin: 20px 0 40px 0;
                     font-weight: bold;
@@ -164,17 +158,12 @@ defineProps({
             }
 
             .image {
-                float: right;
-                width: 30%;
-                text-align: center;
-                height: 100%;
+                display: flex;
                 opacity: 0.7;
 
                 img {
                     max-height: 180px;
-                    position: relative;
-                    top: 50%;
-                    transform: translate(0%, -50%);
+                    max-width: 100%;
                     border-radius: 5px;
                     border: 1px white outset;
                     box-shadow: 0px 0px 0px 1px #9eb6ec;
