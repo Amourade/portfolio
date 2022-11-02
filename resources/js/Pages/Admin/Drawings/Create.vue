@@ -27,7 +27,7 @@ let form = useForm({
 });
 
 let submit = () => {
-    form.post("/admin/drawings/", { preserveScroll: true });
+    form.post("/admin/drawings", { preserveScroll: true });
 };
 </script>
 
