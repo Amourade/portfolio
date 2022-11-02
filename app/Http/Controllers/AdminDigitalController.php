@@ -23,7 +23,7 @@ class AdminDigitalController extends Controller
                 'id' => $digital->id,
                 'title' => $digital->title,
                 'slug' => $digital->slug,
-                'image' => $digital->images[0]->url
+                'image' => $digital->images[0]->thumb
             ];
 
             return $digital;

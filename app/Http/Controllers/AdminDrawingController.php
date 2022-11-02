@@ -23,7 +23,7 @@ class AdminDrawingController extends Controller
                 'id' => $drawing->id,
                 'title' => $drawing->title,
                 'slug' => $drawing->slug,
-                'image' => $drawing->images[0]->url
+                'image' => $drawing->images[0]->thumb
             ];
 
             return $drawing;

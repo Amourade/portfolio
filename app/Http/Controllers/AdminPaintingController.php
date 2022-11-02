@@ -26,7 +26,7 @@ class AdminPaintingController extends Controller
                     'id' => $painting->id,
                     'title' => $painting->title,
                     'slug' => $painting->slug,
-                    'image' => $painting->images[0]->url
+                    'image' => $painting->images[0]->thumb
                 ];
     
                 return $painting;

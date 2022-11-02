@@ -24,7 +24,7 @@ class AdminProjectController extends Controller
                 'id' => $project->id,
                 'title' => $project->title,
                 'slug' => $project->slug,
-                'image' => $project->images[0]->url
+                'image' => $project->images[0]->thumb
             ];
 
             return $project;
