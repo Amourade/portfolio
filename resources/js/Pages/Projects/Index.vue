@@ -116,6 +116,7 @@ defineProps({
 
             display: grid;
             grid-template-columns: 70% 30%;
+            align-items: center;
 
             &:hover {
                 background-color: white;
@@ -129,7 +130,7 @@ defineProps({
 
             .description {
                 h3 {
-                    margin: 20px 0 40px 0;
+                    margin-bottom: 40px;
                     font-weight: bold;
                     font-size: 1.4em;
                 }
