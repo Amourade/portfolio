@@ -19,7 +19,8 @@ class UploadImages{
                 if($image['isNew']){
 
                     $img = $image['image'];
-                    $imgName = time().'.'.$img->extension();
+                    //dd($img);
+                    $imgName = time().$key.'.'.$img->extension();
                     $filePath = 'app/public/thumbnails/'.$imgName;
                     $resized = ImageHelper::make($img->path())->resize(300, 300, function($const){
                         $const->aspectRatio();
