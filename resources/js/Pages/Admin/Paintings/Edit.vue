@@ -27,7 +27,7 @@ let form = useForm({
     images: props.painting.images.map((value, index) => {
         return {
             originalImage: value.url,
-            image: value.url,
+            image: value.thumb,
             isNew: false,
             isDeleted: false,
             order: index,
