@@ -20,7 +20,7 @@ class PaintingController extends Controller
             $painting = [
                 'title' => $painting->title,
                 'slug' => '/peintures/'.$painting->slug,
-                'image' => $painting->images[0]->url
+                'image' => $painting->images[0]->thumb
             ];
             return $painting;
         });
