@@ -23,7 +23,7 @@ let form = useForm({
     title: props.painting.title,
     slug: props.painting.slug,
     description: props.painting.description,
-    video: props.painting.description,
+    video: props.painting.video,
     images: props.painting.images.map((value, index) => {
         return {
             originalImage: value.url,
