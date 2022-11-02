@@ -54,6 +54,7 @@ a {
         box-shadow: 0px 0px 0px 2px #43536b;
         background-color: white;
         border-radius: 5px;
+        object-fit: cover;
 
         &:hover {
             border-color: #46573f;
