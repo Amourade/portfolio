@@ -26,7 +26,6 @@ class UploadImages{
                     })->save(storage_path($filePath), 70);
 
                     $img = $image['image'];
-                    $imgName = time().'.'.$img->extension();
                     $filePath = 'app/public/mediums/'.$imgName;
                     $resized = ImageHelper::make($img->path())->resize(800, 800, function($const){
                         $const->aspectRatio();
