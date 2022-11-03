@@ -96,6 +96,11 @@ Route::get('digitaux/{digital:slug}', [DigitalController::class, 'show']);
 Route::get('digitaux', [DigitalController::class, 'index']);
 
 Route::get('projets', [ProjectController::class, 'index']);
+Route::get('projets/caroussel', function(){
+    return Inertia::render('Projects/Caroussel/Index', [
+        'paintings'=> Painting::whereYear('creation_date', '2020')->get()
+    ]);
+});
 
 Route::get('cv', function(){
     return Inertia::render('CV');
