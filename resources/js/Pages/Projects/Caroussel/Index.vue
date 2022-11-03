@@ -157,7 +157,7 @@ function init() {
     props.paintings.forEach((item, index, arr) => {
         totalThingsToLoad++;
         var texture = new THREE.TextureLoader().load(
-            item.images[0].medium,
+            item.images[0].url,
             function () {
                 paintingTextures[index].dataHeight = item.height;
                 paintingTextures[index].dataWidth = item.width;
