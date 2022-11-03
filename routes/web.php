@@ -61,7 +61,7 @@ Route::get('/', function () {
     $digitals = Digital::all()->map(function($digital){
         $digital = [
             'title' => $digital->title,
-            'slug' => '/digitals/'.$digital->slug,
+            'slug' => '/digitaux/'.$digital->slug,
             'image'=> $digital->images[0]->medium,
             'date' => $digital->creation_date,
             'type' => 'digital'
