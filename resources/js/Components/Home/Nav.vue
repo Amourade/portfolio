@@ -171,7 +171,7 @@ ul {
 
     z-index: 2;
 
-    opacity: 0;
+    opacity: 1;
     transition: opacity 1s;
 
     &.loaded {

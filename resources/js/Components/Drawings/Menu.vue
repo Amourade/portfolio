@@ -51,6 +51,12 @@ nav {
     background-color: white;
 }
 
+@media (max-width: 768px) {
+    nav {
+        padding: 5px 10px;
+    }
+}
+
 h3 {
     text-align: center;
     cursor: pointer;
@@ -96,8 +102,20 @@ a {
     position: absolute;
     overflow-y: auto;
     left: 0px;
-    right: -17px;
+    right: 0;
     max-height: 100%;
+
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .list-wrapper {
+        right: 0px;
+    }
 }
 
 ul {
@@ -127,6 +145,8 @@ li {
         border: 1px solid black;
         max-width: 150px;
         width: 20%;
+        aspect-ratio: 1/1;
+        object-fit: cover;
     }
 }
 

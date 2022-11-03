@@ -190,7 +190,13 @@ h3 {
     min-height: 60px;
     z-index: 1;
 
-    width: calc(100% + 17px);
+    width: calc(100%);
+
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+    &::-webkit-scrollbar {
+        display: none;
+    }
 
     ul {
         padding: 0;
@@ -203,6 +209,9 @@ h3 {
 }
 
 @media (max-width: 768px) {
+    .side-nav {
+        width: 100%;
+    }
     .side-nav ul {
         padding: 60px 0 0 0;
     }

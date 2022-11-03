@@ -110,6 +110,8 @@
     background-repeat: no-repeat;
     padding: 20px 35px 20px 35px;
 
+    background-color: white;
+
     color: black;
 
     h1 {

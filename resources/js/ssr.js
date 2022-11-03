@@ -4,6 +4,7 @@ import { createInertiaApp, Head, Link } from "@inertiajs/inertia-vue3";
 import createServer from "@inertiajs/server";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
 import { Vue3Mq } from "vue3-mq";
+import { createManager } from "@vue-youtube/core";
 import { ZiggyVue } from "../../vendor/tightenco/ziggy/dist/vue.m";
 import moveable from "@/plugins/movable-elements/moveable";
 
@@ -33,6 +34,7 @@ createServer((page) =>
                         lg: 768,
                     },
                 })
+                .use(createManager())
                 .component("Link", Link)
                 .component("Head", Head);
         },

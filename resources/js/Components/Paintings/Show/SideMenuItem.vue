@@ -104,7 +104,16 @@ img {
     box-shadow: 0px 0px 0px 1px #43536b;
     border-radius: 5px;
     background-color: white;
-    max-width: 15vw;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
     //position: absolute;
+}
+
+@media (max-width: 768px) {
+    img {
+        width: 100px;
+        height: 100px;
+    }
 }
 </style>

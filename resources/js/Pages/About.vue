@@ -2,7 +2,13 @@
 import Video from "@/Components/About/Video.vue";
 import ThreeOne from "@/Components/About/Three/One.vue";
 import ThreeTwo from "@/Components/About/Three/Two.vue";
+import { onMounted, ref } from "vue";
 //import ThreeOne from "@/Components/Home/Three/Satan.vue";
+const mounted = ref(false);
+
+onMounted(() => {
+    mounted.value = true;
+});
 </script>
 <template>
     <Head>
@@ -40,7 +46,11 @@ import ThreeTwo from "@/Components/About/Three/Two.vue";
                 </p>
                 <Link class="return" href="/"> Retour </Link>
             </main>
-            <Video videoId="n3kN4hrvEKg" />
+            <Video
+                v-if="mounted"
+                data-moveable-close="true"
+                videoId="n3kN4hrvEKg"
+            />
         </div>
     </div>
 </template>
@@ -76,61 +86,66 @@ import ThreeTwo from "@/Components/About/Three/Two.vue";
     overflow: hidden;
 
     font-family: serif;
+}
+.scroll-container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    overflow: auto;
+}
 
-    .scroll-container {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        overflow: auto;
+main {
+    max-width: 70%;
+    min-height: 50%;
+    border: 1px black solid;
+    position: absolute;
+    top: 50px;
+    left: 50px;
+
+    p {
+        margin: 25px 0px;
+        background-color: white;
+        color: black;
+        float: left;
+        clear: left;
+        box-shadow: 1px 1px 1px black;
+        line-height: 1.2em;
     }
 
-    main {
-        max-width: 70%;
-        min-height: 50%;
-        border: 1px black solid;
-        position: absolute;
-        top: 50px;
-        left: 50px;
+    a {
+        text-decoration: none;
+        color: rgb(66, 81, 216);
 
-        p {
-            margin: 25px 0px;
-            background-color: white;
-            color: black;
-            float: left;
-            clear: left;
-            box-shadow: 1px 1px 1px black;
-            line-height: 1.2em;
+        &:hover {
+            color: purple;
         }
+    }
+}
+.return {
+    position: absolute;
+    display: block;
+    bottom: 10px;
+    right: 10px;
+    padding: 10px 20px 20px 20px;
+    font-family: "ferrum";
+    font-size: 2em;
+    color: white;
+    background-color: black;
+    -ms-transform: rotate(-30deg); /* IE 9 */
+    -webkit-transform: rotate(-30deg); /* Chrome, Safari, Opera */
+    transform: rotate(-30deg);
+    border: 3px black outset;
 
-        a {
-            text-decoration: none;
-            color: rgb(66, 81, 216);
+    &:hover {
+        background-color: white;
+        color: black;
+    }
+}
 
-            &:hover {
-                color: purple;
-            }
-        }
-
-        .return {
-            position: absolute;
-            display: block;
-            bottom: 10px;
-            right: 10px;
-            padding: 10px 20px 20px 20px;
-            font-family: "ferrum";
-            font-size: 2em;
-            color: white;
-            background-color: black;
-            -ms-transform: rotate(-30deg); /* IE 9 */
-            -webkit-transform: rotate(-30deg); /* Chrome, Safari, Opera */
-            transform: rotate(-30deg);
-            border: 3px black outset;
-
-            &:hover {
-                background-color: white;
-                color: black;
-            }
-        }
+@media (max-width: 768px) {
+    .return {
+        bottom: -30px;
+        right: -30px;
     }
 }
 </style>

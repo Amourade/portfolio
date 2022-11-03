@@ -17,7 +17,7 @@ defineProps({
 .infos {
     display: flex;
     width: 100%;
-    align-items: baseline;
+    align-items: flex-start;
     justify-content: space-between;
 
     gap: 10px;
@@ -29,6 +29,10 @@ defineProps({
         &:hover {
             color: blue;
         }
+    }
+
+    p {
+        line-height: 1em;
     }
 
     & > * {

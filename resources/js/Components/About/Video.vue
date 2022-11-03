@@ -1,6 +1,6 @@
 <script setup>
 import { YoutubeIframe } from "@vue-youtube/component";
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 
 const props = defineProps({
     videoId: String,
@@ -16,8 +16,7 @@ const videoOpen = ref(true);
             </div>
             <div class="iframe-holder">
                 <youtube-iframe
-                    width="400"
-                    height="400"
+                    :style="{ width: '100%', height: '100%' }"
                     :video-id="videoId"
                     :player-vars="{ autoplay: 0 }"
                 />
@@ -53,52 +52,63 @@ const videoOpen = ref(true);
     top: 15%;
     overflow: hidden;
     max-width: 75vw;
+}
 
-    .close {
-        text-align: right;
-        padding-bottom: 10px;
+.iframe-holder {
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0px 0px 0px 1px #43536b;
+    background-color: black;
+    border: 4px black inset;
 
-        a {
-            display: inline-block;
-            padding: 5px;
-            cursor: pointer;
-            border-radius: 3px;
-            border: 2px black outset;
-            transform: rotate(-20deg);
-            background: black;
-            color: white;
+    width: 400px;
+    height: 400px;
+}
 
-            text-decoration: none;
+.z-wrapper {
+    z-index: -1;
+    display: block;
+    width: 400px;
+    height: 400px;
+    background-color: transparent;
+    color: transparent;
+    position: absolute;
+    bottom: 7px;
+    left: 10px;
+}
+.close {
+    text-align: right;
+    padding-bottom: 10px;
 
-            &:hover {
-                background: white;
-                color: black;
-                transform: rotate(0deg);
-            }
+    a {
+        display: inline-block;
+        padding: 5px;
+        cursor: pointer;
+        border-radius: 3px;
+        border: 2px black outset;
+        transform: rotate(-20deg);
+        background: black;
+        color: white;
+
+        text-decoration: none;
+
+        &:hover {
+            background: white;
+            color: black;
+            transform: rotate(0deg);
         }
     }
+}
 
+iframe {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+@media (max-width: 768px) {
     .iframe-holder {
-        border-radius: 5px;
-        overflow: hidden;
-        box-shadow: 0px 0px 0px 1px #43536b;
-        background-color: black;
-        border: 4px black inset;
-
-        width: 400px;
-        height: 400px;
-    }
-
-    .z-wrapper {
-        z-index: -1;
-        display: block;
-        width: 400px;
-        height: 400px;
-        background-color: transparent;
-        color: transparent;
-        position: absolute;
-        bottom: 7px;
-        left: 10px;
+        width: 250px;
+        height: 250px;
     }
 }
 </style>

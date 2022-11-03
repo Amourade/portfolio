@@ -49,7 +49,6 @@ const imgLoaded = () => {
 };
 
 function updateImageClientWidth() {
-    console.log(img.value.clientWidth);
     imgWidth.value = img.value.clientWidth + "px";
 }
 </script>

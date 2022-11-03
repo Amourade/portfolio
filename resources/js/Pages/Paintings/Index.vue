@@ -189,7 +189,6 @@ const doneLoading = computed(() => {
     z-index: 1;
     position: relative;
     overflow-y: auto;
-    margin-right: -20px;
     display: flex;
     flex-wrap: wrap;
 
@@ -206,36 +205,50 @@ const doneLoading = computed(() => {
         rgba(0, 0, 0, 1) 100%
     );
 
+    gap: 15px;
+
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
     div {
         display: flex;
         align-items: center;
         justify-content: center;
 
-        width: 150px;
-        height: 150px;
+        /* width: 150px;
+        height: 150px; */
     }
 }
-
-@media only screen and (max-width: 768px) {
-    .thumbs-list {
-        div {
-            width: 110px;
-            height: 110px;
-        }
-    }
-}
-
 .peintures {
     height: 100vh;
     width: 100vw;
     max-width: 100%;
     max-height: 100%;
-    min-width: 400px;
+    //min-width: 400px;
     position: relative;
 
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+@media only screen and (max-width: 768px) {
+    .thumbs-list-wrapper {
+        margin: 0px;
+    }
+    .thumbs-list {
+        padding: 0px;
+        margin-right: 0px;
+        gap: 0px;
+
+        div {
+            width: 110px;
+            height: 110px;
+        }
+    }
 }
 
 @keyframes hidediv {

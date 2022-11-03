@@ -29,7 +29,12 @@ watch(
         </a>
     </transition>
     <transition>
-        <div v-if="videoOpen" v-moveable class="video-wrapper">
+        <div
+            v-if="videoOpen"
+            v-moveable
+            data-moveable-close="true"
+            class="video-wrapper"
+        >
             <div>
                 <a
                     class="close"
@@ -93,8 +98,8 @@ watch(
 }
 
 .iframe-holder {
-    width: 80vh;
-    height: 80vw;
+    width: 80vw;
+    height: 60vw;
     max-width: 500px;
     max-height: 500px;
     position: relative;
