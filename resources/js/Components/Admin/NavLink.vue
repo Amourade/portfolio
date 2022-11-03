@@ -1,8 +1,9 @@
 <template>
-<Link><slot /></Link>
+    <Link><slot /></Link>
 </template>
 <style lang="scss" scoped>
-a, button{
+a,
+button {
     text-decoration: none;
     text-align: center;
     cursor: pointer;
@@ -14,20 +15,27 @@ a, button{
     border: 1px solid rgb(183, 129, 195);
     border-radius: 15px;
 
-    box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.4);
+    box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.4);
 
     color: #050545;
 
-    transition: all .5s;
+    transition: all 0.5s;
 
-    &:hover{
+    &:hover {
         background: rgba(183, 129, 195, 0.6);
         color: black;
-        box-shadow: 0px 0px 2px rgba(0,0,0,0.3);
+        box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
     }
 
-    &:not(:first-child){
+    &:not(:first-child) {
         margin-top: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    a,
+    button {
+        padding: 2px 5px;
     }
 }
 </style>

@@ -134,6 +134,7 @@ watch(
     border: 3px solid #795980;
 
     font-family: "Caveat", cursive;
+    color: rgb(44, 62, 80);
 
     display: flex;
     flex-direction: column;

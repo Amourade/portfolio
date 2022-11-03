@@ -227,4 +227,25 @@ button {
     //width: 100%;
     margin: 10px 5px 0px 5px;
 }
+
+@media (max-width: 768px) {
+    .input-holder {
+        padding: 10px 5px;
+    }
+
+    .buttons {
+        margin-top: 10px;
+    }
+
+    button {
+        margin: 0px 3px 0px 3px;
+    }
+
+    img {
+        max-width: 150px;
+        max-height: 150px;
+        width: 100%;
+        height: 100%;
+    }
+}
 </style>

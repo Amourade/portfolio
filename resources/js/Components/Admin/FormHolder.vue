@@ -1,5 +1,4 @@
-<script setup>
-</script>
+<script setup></script>
 
 <template>
     <div>
@@ -7,12 +6,11 @@
     </div>
 </template>
 <style scoped lang="scss">
-
-div{
+div {
     background: #f9f7f0;
-    box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.5) inset, 0px 0px 1px 1px rgba(0,0,0,0.3);
+    box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.5) inset,
+        0px 0px 1px 1px rgba(0, 0, 0, 0.3);
     border: 1px solid white;
-
 
     max-width: 620px;
     width: 100%;
@@ -22,4 +20,10 @@ div{
     border-radius: 60px;
 }
 
+@media (max-width: 768px) {
+    div {
+        padding: 20px;
+        border-radius: 30px;
+    }
+}
 </style>

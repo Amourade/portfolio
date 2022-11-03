@@ -82,9 +82,7 @@ h2 {
 
 .files-holder {
     display: grid;
-    grid-template-columns: calc(33.3% - 6.6px) calc(33.3% - 6.7px) calc(
-            33.3% - 6.6px
-        );
+    grid-template-columns: 1fr 1fr 1fr;
     column-gap: 10px;
     row-gap: 10px;
     margin: 10px 0;
@@ -92,5 +90,17 @@ h2 {
 
 .wrapper {
     margin-bottom: 20px;
+}
+
+@media (max-width: 550px) {
+    .files-holder {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 360px) {
+    .files-holder {
+        grid-template-columns: 1fr;
+    }
 }
 </style>
