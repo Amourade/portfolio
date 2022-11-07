@@ -9,6 +9,10 @@ export default function moveableStart(el, e) {
         ? (window.moveableData.targetLink = e.target.href)
         : (window.moveableData.targetLink = null);
 
+    el.getElementsByClassName("destination").length > 0
+        ? (window.moveableData.destination =
+              el.getElementsByClassName("destination")[0].href)
+        : (window.moveableData.destination = null);
     //Initiate current moving object
     window.moveableData.el = el;
     window.moveableData.hasMoved = false;

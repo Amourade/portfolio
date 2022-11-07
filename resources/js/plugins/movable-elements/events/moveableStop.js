@@ -22,9 +22,17 @@ export default function () {
         return;
     }
 
+    console.log(window.moveableData.hasMoved);
+
     if (!window.moveableData.hasMoved && window.moveableData.targetLink) {
         Inertia.visit(window.moveableData.targetLink);
         //window.moveableData.el.click();
         //window.location.href = window.moveableData.targetLink;
+    }
+
+    if (!window.moveableData.hasMoved && window.moveableData.destination) {
+        //Inertia.visit(window.moveableData.targetLink);
+        //window.moveableData.el.click();
+        window.location.href = window.moveableData.destination;
     }
 }
