@@ -21,22 +21,24 @@ createServer((page) =>
                 import.meta.glob("./Pages/**/*.vue")
             ),
         setup({ app, props, plugin }) {
-            return createSSRApp({ render: () => h(app, props) })
-                .use(plugin)
-                .use(moveable)
-                .use(ZiggyVue, {
-                    ...page.props.ziggy,
-                    location: new URL(page.props.ziggy.location),
-                })
-                .use(Vue3Mq, {
-                    breakpoints: {
-                        sm: 0,
-                        lg: 768,
-                    },
-                })
-                .use(createManager())
-                .component("Link", Link)
-                .component("Head", Head);
+            return (
+                createSSRApp({ render: () => h(app, props) })
+                    .use(plugin)
+                    .use(moveable)
+                    .use(ZiggyVue, {
+                        ...page.props.ziggy,
+                        location: new URL(page.props.ziggy.location),
+                    })
+                    .use(Vue3Mq, {
+                        breakpoints: {
+                            sm: 0,
+                            lg: 768,
+                        },
+                    })
+                    //.use(createManager())
+                    .component("Link", Link)
+                    .component("Head", Head)
+            );
         },
     })
 );

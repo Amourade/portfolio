@@ -67,44 +67,46 @@ watch(loaded, (value) => {
 </script>
 <template>
     <div
-        v-show="loadDone"
         class="drawings-page"
         :style="{ backgroundImage: 'url(' + background + ')' }"
     >
-        <Menu
-            @navigate="navigate"
-            :drawings="drawings"
-            :currentDrawing="currentDrawing"
-            :highlight="currentHighlight"
-            @hover="highlight"
-            @out="removeHighlight"
-        />
-        <div id="video-holder"></div>
-        <main>
-            <Drawing
-                v-for="(drawing, index) in drawings"
-                :index="index"
-                :highestIndex="highestIndex"
-                :highlight="
-                    currentHighlight && currentHighlight === drawing.slug
-                        ? true
-                        : false
-                "
-                :details="
-                    currentDrawing && drawing.slug === currentDrawing.slug
-                        ? currentDrawing
-                        : null
-                "
-                :drawingOpen="drawingOpen"
+        <template v-if="loadDone">
+            <Menu
                 @navigate="navigate"
-                :drawing="drawing"
+                :drawings="drawings"
+                :currentDrawing="currentDrawing"
+                :highlight="currentHighlight"
                 @hover="highlight"
                 @out="removeHighlight"
-                @loadNeeded="toLoad++"
-                @loaded="loaded++"
             />
-            <slot />
-        </main>
+            <div id="video-holder"></div>
+            <main>
+                <Drawing
+                    v-for="(drawing, index) in drawings"
+                    :key="index"
+                    :index="index"
+                    :highestIndex="highestIndex"
+                    :highlight="
+                        currentHighlight && currentHighlight === drawing.slug
+                            ? true
+                            : false
+                    "
+                    :details="
+                        currentDrawing && drawing.slug === currentDrawing.slug
+                            ? currentDrawing
+                            : null
+                    "
+                    :drawingOpen="drawingOpen"
+                    @navigate="navigate"
+                    :drawing="drawing"
+                    @hover="highlight"
+                    @out="removeHighlight"
+                    @loadNeeded="toLoad++"
+                    @loaded="loaded++"
+                />
+                <slot />
+            </main>
+        </template>
     </div>
 </template>
 <style lang="scss" scoped>
@@ -130,6 +132,7 @@ watch(loaded, (value) => {
     color: black;
     background-size: 100%;
     background-position: center -7%;
+    background-color: white;
 
     overflow: hidden;
 }
