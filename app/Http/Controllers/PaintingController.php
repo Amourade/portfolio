@@ -59,7 +59,7 @@ class PaintingController extends Controller
      */
     public function show(Painting $painting)
     {
-        $paintings = Painting::orderBy('creation_date', 'asc')->get()->map(function($painting){
+        $paintings = Painting::orderBy('creation_date', 'desc')->get()->map(function($painting){
             $painting = [
                 'id' => $painting->id,
                 'title' => $painting->title,
