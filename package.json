@@ -23,8 +23,6 @@
         "vue": "^3.2.41"
     },
     "dependencies": {
-        "@vue-youtube/component": "^0.0.3",
-        "@vue-youtube/core": "^0.0.3",
         "dateformat": "^5.0.3",
         "three": "^0.146.0",
         "vue-client-only": "^2.1.0",

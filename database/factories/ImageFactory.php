@@ -20,6 +20,7 @@ class ImageFactory extends Factory
 
         return [
             'url' => $this->faker->unique()->imageUrl(2000*$ratio, 2000/$ratio),
+            'medium' => $this->faker->unique()->imageUrl(800*$ratio, 800/$ratio),
             'thumb' => $this->faker->unique()->imageUrl(150*$ratio, 150/$ratio),
             'name' => $this->faker->streetName()
         ];

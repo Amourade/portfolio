@@ -7,7 +7,7 @@ import { createInertiaApp, Head, Link } from "@inertiajs/inertia-vue3";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
 import { ZiggyVue } from "../../vendor/tightenco/ziggy/dist/vue.m";
 import { Vue3Mq } from "vue3-mq";
-import { createManager } from "@vue-youtube/core";
+import { createManager } from "@/plugins/@vue-youtube/core";
 import moveable from "@/plugins/movable-elements/moveable";
 
 const appName =

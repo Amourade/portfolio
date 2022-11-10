@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-        /* for($i = 0; $i < 80; $i++){
+        for($i = 0; $i < 80; $i++){
             \App\Models\Painting::factory()->create();
         }
 
@@ -35,13 +35,13 @@ class DatabaseSeeder extends Seeder
 
         for($i = 0; $i < 20; $i++){
             \App\Models\Digital::factory()->create();
-        } */
+        }
 
         \App\Models\User::create([
-            'name' => 'admin',
-            'email' => 'theriault.antoine@gmail.com',
+            'name' => 'admin-test',
+            'email' => 'test@admin.com',
             'email_verified_at' => now(),
-            'password' => bcrypt('Bitch328'), // password
+            'password' => bcrypt('admin'), // password
             'remember_token' => Str::random(10),
         ]);
     }
