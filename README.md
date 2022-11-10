@@ -3,6 +3,7 @@
 ## How to setup
 
 1. Change .env.example to .env and adjust database information
+    - if using sqlite, create database.sqlite file in database folder
 2. `composer install`
 3. `php artisan key:generate`
 4. `php artisan migrate`
