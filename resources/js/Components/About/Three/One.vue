@@ -4,7 +4,7 @@ import { ref, onMounted } from "vue";
 import * as Three from "three";
 
 //Import assets for Three
-import painting from "Assets/images/about/threeOne.jpg";
+import painting from "Assets/images/about/threeOne.webp";
 import tennisSound from "Assets/sounds/shared/tennisserve.mp3";
 
 const container = ref(null);

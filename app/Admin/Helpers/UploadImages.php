@@ -19,20 +19,24 @@ class UploadImages{
                 if($image['isNew']){
 
                     $img = $image['image'];
-                    //dd($img);
-                    $imgName = time().$key.'.'.$img->extension();
+                    //$imgName = time().$key.'.'.$img->extension();
+                    $imgName = time().$key.'.webp';
                     $filePath = 'app/public/thumbnails/'.$imgName;
-                    $resized = ImageHelper::make($img->path())->resize(300, 300, function($const){
+                    $resized = ImageHelper::make($img->path())->encode('webp', 80)->resize(300, 300, function($const){
                         $const->aspectRatio();
                     })->save(storage_path($filePath), 70);
 
                     $img = $image['image'];
                     $filePath = 'app/public/mediums/'.$imgName;
-                    $resized = ImageHelper::make($img->path())->resize(800, 800, function($const){
+                    $resized = ImageHelper::make($img->path())->encode('webp', 90)->resize(800, 800, function($const){
                         $const->aspectRatio();
                     })->save(storage_path($filePath), 70);
 
-                    $image['image']->storeAs('images', $imgName);
+                    $img = $image['image'];
+                    $filePath = 'app/public/images/'.$imgName;
+                    $original = ImageHelper::make($img->path())->encode('webp', 90)->save(storage_path($filePath), 90);
+
+                    //$image['image']->storeAs('images', $imgName);
 
                     $image['image'] = Image::create([
                         'url'=> '/storage/images/'.$imgName,

@@ -1,14 +1,50 @@
 <script setup>
+import { Inertia } from "@inertiajs/inertia";
+import { onBeforeMount, onMounted, watch, ref } from "vue";
+
 defineProps({
     projects: Object,
 });
+
+const toLoad = ref(0);
+const loaded = ref(0);
+const loadDone = ref(true);
+const goingHome = ref(false);
+
+onBeforeMount(() => {
+    loadDone.value = false;
+});
+
+onMounted(() => {
+    loadDone.value = true;
+});
+
+watch(loaded, (value) => {
+    if (value === toLoad.value) loadDone.value = true;
+});
+
+const changePage = (e) => {
+    goingHome.value = true;
+    setTimeout(() => {
+        Inertia.visit(e);
+    }, 150);
+};
 </script>
 <template>
     <Head>
         <title>Projets</title>
     </Head>
+
+    <transition>
+        <div class="loader" v-if="!loadDone"></div>
+    </transition>
+
+    <Transition name="going-home">
+        <div class="going-home" v-if="goingHome"></div>
+    </Transition>
+
     <div id="projects">
-        <Link class="return" href="/">Accueil</Link>
+        <a @click.prevent="changePage('/')" class="return" href="/">Accueil</a>
         <main>
             <div
                 class="project"
@@ -34,9 +70,64 @@ defineProps({
         </main>
     </div>
 </template>
-<style lang="scss">
+<style lang="scss" scoped>
+.v-enter-active {
+    transition: none;
+}
+
+.v-enter-from {
+    opacity: 1;
+}
+
+.v-leave-active {
+    transition: opacity 1s linear;
+}
+
+.v-leave-to {
+    opacity: 0;
+}
+
+.loader {
+    background: #71c2dd;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    max-height: 100%;
+    max-width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 100;
+}
+
+.going-home-enter-active,
+.going-home-leave-active {
+    transition: all 0.3s linear;
+}
+
+.going-home-enter-from,
+.going-home-leave-to {
+    opacity: 0;
+}
+
+.going-home {
+    background: black;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    max-height: 100%;
+    max-width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 100;
+}
 #projects {
-    background: url("Assets/images/projects/back.jpg");
+    background: url("Assets/images/projects/back.webp");
     background-position: center top;
     min-height: 100vh;
 

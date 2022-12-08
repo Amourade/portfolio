@@ -10,6 +10,8 @@ import Corridor from "@/Components/Paintings/Show/Corridor/Index.vue";
 import Painting from "@/Components/Paintings/Show/Painting.vue";
 import LoadIndicator from "@/Components/Paintings/Show/LoadIndicator.vue";
 
+//InertiaProgress.init({ color: "#ff00ff", includeCSS: false });
+
 const props = defineProps({
     painting: Object,
     paintings: Object,
@@ -18,6 +20,7 @@ const props = defineProps({
 const fadeSpeed = 250;
 const transitionPainting = ref(false);
 const toLoad = ref(0);
+const goingHome = ref(false);
 const loaded = ref(0);
 
 const ptngsList = computed(() => {
@@ -54,8 +57,20 @@ let navigation = (e) => {
     }
 };
 
+let changePage = (e) => {
+    goingHome.value = true;
+    setTimeout(() => {
+        Inertia.visit(e);
+    }, 150);
+};
+
 onBeforeUnmount(() => {
     if (navTimeout) clearTimeout(navTimeout);
+});
+
+const loadDone = computed(() => {
+    return toLoad.value === loaded.value;
+    //return true;
 });
 </script>
 
@@ -64,17 +79,20 @@ onBeforeUnmount(() => {
         <title>{{ painting.title }}</title>
     </Head>
     <Transition appear>
-        <div class="loader" v-if="toLoad !== loaded">
+        <div class="loader" v-if="!loadDone">
             <div class="inside">
                 <LoadIndicator />
             </div>
         </div>
     </Transition>
+    <Transition name="going-home">
+        <div class="going-home" v-if="goingHome"></div>
+    </Transition>
 
     <div class="page">
         <Corridor @load-needed="toLoad++" @loaded="loaded++" />
         <div class="top">
-            <CloseLink />
+            <CloseLink @changePage="changePage" />
             <SideMenu
                 @navigation="navigation"
                 :paintings="paintings"
@@ -100,7 +118,7 @@ onBeforeUnmount(() => {
         </div>
     </div>
 </template>
-<style>
+<style lang="scss" scoped>
 @font-face {
     font-family: "ferrum";
     src: url("Assets/fonts/ferrum/ferrum.otf") format("opentype");
@@ -111,8 +129,6 @@ onBeforeUnmount(() => {
 body {
     font-family: "Times New Roman", Times, serif;
 }
-</style>
-<style lang="scss" scoped>
 .v-enter-active {
     transition: none;
 }
@@ -141,6 +157,31 @@ body {
 
 .loader {
     background: white;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    max-height: 100%;
+    max-width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 100;
+}
+
+.going-home-enter-active,
+.going-home-leave-active {
+    transition: all 0.3s linear;
+}
+
+.going-home-enter-from,
+.going-home-leave-to {
+    opacity: 0;
+}
+
+.going-home {
+    background: black;
     position: absolute;
     width: 100vw;
     height: 100vh;

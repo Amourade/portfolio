@@ -99,7 +99,7 @@ onUnmounted(() => {
     </main>
 </template>
 >
-<style lang="scss">
+<style lang="scss" scoped>
 .open-digital {
     //transform: translate(-50%, -50%);
     position: absolute;

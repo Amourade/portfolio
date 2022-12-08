@@ -4,18 +4,59 @@ import Clock from "@/Components/Home/Clock.vue";
 import Satan from "@/Components/Home/Three/Satan.vue";
 import Model from "@/Components/Home/Three/Model.vue";
 import Nav from "@/Components/Home/Nav.vue";
-import webImage from "Assets/images/home/web.jpg";
-import { onMounted } from "vue";
+import webImage from "Assets/images/home/web.webp";
+import { computed, nextTick, onBeforeMount, onMounted, ref, watch } from "vue";
+import { Inertia } from "@inertiajs/inertia";
 
 defineProps({
     works: Object,
 });
+
+const toLoad = ref(0);
+const loaded = ref(0);
+const loadDone = ref(true);
+const goingAway = ref(false);
+const fadeColor = ref(null);
+
+onBeforeMount(() => {
+    loadDone.value = false;
+});
+
+onMounted(() => {
+    loadDone.value = true;
+});
+
+watch(loaded, (value) => {
+    if (value === toLoad.value) loadDone.value = true;
+});
+
+const changePage = (e) => {
+    console.log(e);
+
+    goingAway.value = true;
+    fadeColor.value = e.color;
+    setTimeout(() => {
+        Inertia.visit(e.url);
+    }, 150);
+};
 </script>
 
 <template>
     <Head>
         <title>Bienvenue</title>
     </Head>
+
+    <transition>
+        <div class="loader" v-if="!loadDone"></div>
+    </transition>
+
+    <Transition name="going-away">
+        <div
+            class="going-away"
+            :style="{ background: fadeColor }"
+            v-if="goingAway"
+        ></div>
+    </Transition>
 
     <div id="app-body">
         <div v-moveable class="web-portfolio">
@@ -31,7 +72,7 @@ defineProps({
         <div id="window-teleport"></div>
 
         <header>
-            <Nav />
+            <Nav @changePage="changePage" />
         </header>
 
         <Clock />
@@ -48,7 +89,63 @@ defineProps({
 
 <style lang="scss" scoped>
 /** Typo */
-@import url("https://fonts.googleapis.com/css2?family=Jim+Nightshade&family=Tangerine");
+@import url("https://fonts.googleapis.com/css2?family=Jim+Nightshade&family=Tangerine&display=swap");
+
+.v-enter-active {
+    transition: none;
+}
+
+.v-enter-from {
+    opacity: 1;
+}
+
+.v-leave-active {
+    transition: opacity 1s linear;
+}
+
+.v-leave-to {
+    opacity: 0;
+}
+
+.loader {
+    background: black;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    max-height: 100%;
+    max-width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 100;
+}
+
+.going-away-enter-active,
+.going-away-leave-active {
+    transition: all 0.3s linear;
+}
+
+.going-away-enter-from,
+.going-away-leave-to {
+    opacity: 0;
+}
+
+.going-away {
+    background: black;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    max-height: 100%;
+    max-width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 100;
+}
 
 #app-body {
     width: 100%;

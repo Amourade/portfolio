@@ -64,6 +64,31 @@ watch(
 </style>
 
 <style lang="scss" scoped>
+.v-enter-active {
+    transition: none;
+}
+
+.v-enter-from {
+    opacity: 1;
+}
+
+.v-enter-active .inside,
+.v-leave-active .inside {
+    transition: opacity 0.5s linear;
+}
+
+.v-enter-from .inside,
+.v-leave-to .inside {
+    opacity: 0;
+}
+
+.v-leave-active {
+    transition: opacity 1s linear;
+}
+
+.v-leave-to {
+    opacity: 0;
+}
 .alert {
     position: fixed;
     left: 10px;

@@ -1,6 +1,6 @@
 <script setup>
 import { onBeforeMount } from "vue";
-import Grab from "Assets/images/drawings/grab-bottom.png";
+import Grab from "Assets/images/drawings/grab-bottom.webp";
 
 const emit = defineEmits(["loadNeeded", "loaded"]);
 

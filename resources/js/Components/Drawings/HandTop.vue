@@ -1,6 +1,6 @@
 <script setup>
-import Hand from "Assets/images/drawings/main.png";
-import Grab from "Assets/images/drawings/grab-top.png";
+import Hand from "Assets/images/drawings/main.webp";
+import Grab from "Assets/images/drawings/grab-top.webp";
 import { onBeforeMount, ref, watch } from "vue";
 
 defineProps({

@@ -17,7 +17,7 @@ export default {
 
 <style scoped>
 #home-seller {
-    background: url("Assets/images/admin/vendeur.png");
+    background: url("Assets/images/admin/vendeur.webp");
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;

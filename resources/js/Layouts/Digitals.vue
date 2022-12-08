@@ -1,6 +1,6 @@
 <script setup>
 import { Inertia } from "@inertiajs/inertia";
-import { reactive, ref } from "vue";
+import { onBeforeMount, onMounted, reactive, ref, watch } from "vue";
 import NavItem from "@/Components/Digitals/NavItem.vue";
 import OpenItem from "@/Components/Digitals/OpenItem.vue";
 
@@ -101,10 +101,43 @@ const openImage = (e, args = { triggered: false }) => {
         }, 300);
     }
 };
+
+const toLoad = ref(0);
+const loaded = ref(0);
+const loadDone = ref(true);
+const goingHome = ref(false);
+
+onBeforeMount(() => {
+    loadDone.value = false;
+});
+
+onMounted(() => {
+    loadDone.value = true;
+});
+
+watch(loaded, (value) => {
+    if (value === toLoad.value) loadDone.value = true;
+});
+
+const changePage = (e) => {
+    goingHome.value = true;
+    setTimeout(() => {
+        Inertia.visit(e);
+    }, 150);
+};
 </script>
 <template>
     <div id="digitals">
-        <header><Link href="/">Accueil - Home</Link></header>
+        <transition>
+            <div class="loader" v-if="!loadDone"></div>
+        </transition>
+
+        <Transition name="going-home">
+            <div class="going-home" v-if="goingHome"></div>
+        </Transition>
+        <header>
+            <a @click.prevent="changePage('/')" href="/">Accueil - Home</a>
+        </header>
         <nav class="shelf">
             <div id="digitals-wrapper">
                 <div
@@ -134,6 +167,71 @@ const openImage = (e, args = { triggered: false }) => {
 </template>
 <style lang="scss" scoped>
 @import "Css/digitals-variable.scss";
+.v-enter-active {
+    transition: none;
+}
+
+.v-enter-from {
+    opacity: 1;
+}
+
+.v-enter-active .inside,
+.v-leave-active .inside {
+    transition: opacity 0.5s linear;
+}
+
+.v-enter-from .inside,
+.v-leave-to .inside {
+    opacity: 0;
+}
+
+.v-leave-active {
+    transition: opacity 1s linear;
+}
+
+.v-leave-to {
+    opacity: 0;
+}
+
+.loader {
+    background: #434b2d;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    max-height: 100%;
+    max-width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 100;
+}
+
+.going-home-enter-active,
+.going-home-leave-active {
+    transition: all 0.3s linear;
+}
+
+.going-home-enter-from,
+.going-home-leave-to {
+    opacity: 0;
+}
+
+.going-home {
+    background: black;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    max-height: 100%;
+    max-width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 100;
+}
 #digitals {
     overflow-x: hidden;
     min-width: calc(100vw - 17px);
@@ -145,8 +243,8 @@ header {
     position: relative;
     width: 100%;
 
-    background: url("Assets/images/digital/top.png"),
-        url("Assets/images/digital/top-texture.png"), #83ab8c;
+    background: url("Assets/images/digital/top.webp"),
+        url("Assets/images/digital/top-texture.webp"), #83ab8c;
     background-repeat: no-repeat, repeat;
     background-position: top left;
     overflow: hidden;
@@ -215,7 +313,7 @@ footer {
         z-index: 5;
         transform: rotateX(27deg);
 
-        background: url("Assets/images/digital/planche.jpg");
+        background: url("Assets/images/digital/planche.webp");
     }
 }
 
@@ -226,8 +324,8 @@ footer {
 
     width: 100%;
 
-    background-image: url("Assets/images/digital/text-grosse-min.png");
-    background: url("Assets/images/digital/text-grosse-min.png"), $base-color;
+    background-image: url("Assets/images/digital/text-petite-min.webp");
+    background: url("Assets/images/digital/text-petite-min.webp"), $base-color;
 
     #digitals-wrapper {
         padding: 100px 50px 200px 50px;

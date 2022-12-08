@@ -16,7 +16,9 @@ const menuOpen = ref(false);
             <div class="list-wrapper">
                 <ul>
                     <li class="home">
-                        <Link href="/">Accueil - Home</Link>
+                        <a @click.prevent="$emit('changePage', '/')" href="/"
+                            >Accueil - Home</a
+                        >
                     </li>
                     <li v-for="drawing in drawings">
                         <a

@@ -80,7 +80,6 @@ Route::get('/', function () {
     });
 
     $works = collect($paintings->concat($drawings)->concat($digitals)->concat($projects))->sortByDesc('date')->values()->all();
-
     return Inertia::render('Home', [
         'works' => $works
     ]);

@@ -1,6 +1,6 @@
 <script setup>
 import Menu from "@/Components/Drawings/Menu.vue";
-import background from "Assets/images/drawings/fond-drawings.jpg";
+import background from "Assets/images/drawings/fond-drawings.webp";
 import Drawing from "@/Components/Drawings/Drawing.vue";
 import { onBeforeMount, onMounted, ref, watch } from "vue";
 import { useIndexManager } from "@/Utils/indexManager";
@@ -44,11 +44,15 @@ function navigate(e) {
     }
 }
 
-onBeforeMount(() => {
-    loadDone.value = false;
-});
+/**Load Logic */
+
+const toLoad = ref(0);
+const loaded = ref(0);
+const loadDone = ref(true);
+const goingHome = ref(false);
 
 onBeforeMount(() => {
+    loadDone.value = false;
     toLoad.value++;
     let bg = new Image();
     bg.src = background;
@@ -57,25 +61,37 @@ onBeforeMount(() => {
     };
 });
 
-const toLoad = ref(0);
-const loaded = ref(0);
-const loadDone = ref(true);
-
 watch(loaded, (value) => {
     if (value === toLoad.value) loadDone.value = true;
 });
+
+const changePage = (e) => {
+    goingHome.value = true;
+    setTimeout(() => {
+        Inertia.visit(e);
+    }, 150);
+};
 </script>
 <template>
     <div
         class="drawings-page"
         :style="{ backgroundImage: 'url(' + background + ')' }"
     >
+        <transition>
+            <div class="loader" v-if="!loadDone"></div>
+        </transition>
+
+        <Transition name="going-home">
+            <div class="going-home" v-if="goingHome"></div>
+        </Transition>
+
         <template v-if="loadDone">
             <Menu
                 @navigate="navigate"
                 :drawings="drawings"
                 :currentDrawing="currentDrawing"
                 :highlight="currentHighlight"
+                @changePage="changePage"
                 @hover="highlight"
                 @out="removeHighlight"
             />
@@ -111,16 +127,71 @@ watch(loaded, (value) => {
 </template>
 <style lang="scss" scoped>
 @import url("https://fonts.googleapis.com/css2?family=Tangerine");
-.v-enter-active,
-.v-leave-active {
+.v-enter-active {
+    transition: none;
+}
+
+.v-enter-from {
+    opacity: 1;
+}
+
+.v-enter-active .inside,
+.v-leave-active .inside {
     transition: opacity 0.5s linear;
 }
 
-.v-enter-from,
+.v-enter-from .inside,
+.v-leave-to .inside {
+    opacity: 0;
+}
+
+.v-leave-active {
+    transition: opacity 1s linear;
+}
+
 .v-leave-to {
     opacity: 0;
 }
 
+.loader {
+    background: #631c1c;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    max-height: 100%;
+    max-width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 100;
+}
+
+.going-home-enter-active,
+.going-home-leave-active {
+    transition: all 0.3s linear;
+}
+
+.going-home-enter-from,
+.going-home-leave-to {
+    opacity: 0;
+}
+
+.going-home {
+    background: black;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    max-height: 100%;
+    max-width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 100;
+}
 .drawings-page {
     position: absolute;
     z-index: 1;
@@ -135,21 +206,6 @@ watch(loaded, (value) => {
     background-color: white;
 
     overflow: hidden;
-}
-
-.loader {
-    width: 100vw;
-    height: 100vh;
-    z-index: 1000;
-    background: white;
-    position: absolute;
-    font-size: 30px;
-    font-family: "Tangerine", cursive;
-    z-index: 100;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 main {

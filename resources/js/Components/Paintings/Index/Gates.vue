@@ -1,7 +1,7 @@
 <script setup>
-import rightDoor from "Assets/images/paintings/index/droite.gif";
-import leftDoor from "Assets/images/paintings/index/gauche.gif";
-import back from "Assets/images/paintings/index/fond.jpg";
+import rightDoor from "Assets/images/paintings/index/droite.webp";
+import leftDoor from "Assets/images/paintings/index/gauche.webp";
+import back from "Assets/images/paintings/index/fond.webp";
 import { onBeforeMount, ref } from "vue";
 
 const emit = defineEmits(["loadNeeded", "loaded"]);

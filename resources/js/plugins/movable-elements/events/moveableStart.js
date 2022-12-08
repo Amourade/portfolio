@@ -3,10 +3,14 @@ import moveableStop from "./moveableStop";
 import eventListener from "../utils/eventListener";
 
 export default function moveableStart(el, e) {
-    e.preventDefault();
     //If the event target is a link we store the target for later use
-    e.target.tagName === "A"
+    //console.log(e);
+    e.preventDefault();
+    /* e.target.tagName === "A"
         ? (window.moveableData.targetLink = e.target.href)
+        : (window.moveableData.targetLink = null); */
+    e.target.tagName === "A"
+        ? (window.moveableData.targetLink = e.target)
         : (window.moveableData.targetLink = null);
 
     el.getElementsByClassName("destination").length > 0

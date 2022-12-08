@@ -2,18 +2,49 @@
 import Video from "@/Components/About/Video.vue";
 import ThreeOne from "@/Components/About/Three/One.vue";
 import ThreeTwo from "@/Components/About/Three/Two.vue";
-import { onMounted, ref } from "vue";
+import { onBeforeMount, onMounted, ref, watch } from "vue";
+import { Inertia } from "@inertiajs/inertia";
 //import ThreeOne from "@/Components/Home/Three/Satan.vue";
 const mounted = ref(false);
 
+const toLoad = ref(0);
+const loaded = ref(0);
+const loadDone = ref(true);
+const goingHome = ref(false);
+
+onBeforeMount(() => {
+    loadDone.value = false;
+});
+
 onMounted(() => {
+    loadDone.value = true;
     mounted.value = true;
 });
+
+watch(loaded, (value) => {
+    if (value === toLoad.value) loadDone.value = true;
+});
+
+const changePage = (e) => {
+    goingHome.value = true;
+    setTimeout(() => {
+        Inertia.visit(e);
+    }, 150);
+};
 </script>
 <template>
     <Head>
         <title>À Propos</title>
     </Head>
+
+    <transition>
+        <div class="loader" v-if="!loadDone"></div>
+    </transition>
+
+    <Transition name="going-home">
+        <div class="going-home" v-if="goingHome"></div>
+    </Transition>
+
     <div id="about">
         <div class="scroll-container">
             <ThreeOne></ThreeOne>
@@ -32,11 +63,11 @@ onMounted(() => {
                 </p>
 
                 <p>
-                    <Link href="/cv">
+                    <a @click.prevent="changePage('/cv')" href="/cv">
                         <em>
                             <strong>cv</strong>
                         </em>
-                    </Link>
+                    </a>
                 </p>
 
                 <p>
@@ -44,7 +75,9 @@ onMounted(() => {
                         >theriault.antoine@gmail.com</a
                     >
                 </p>
-                <Link class="return" href="/"> Retour </Link>
+                <a @click.prevent="changePage('/')" class="return" href="/">
+                    Retour
+                </a>
             </main>
             <Video
                 v-if="mounted"
@@ -60,6 +93,61 @@ onMounted(() => {
     src: url("Assets/fonts/ferrum/ferrum.otf") format("opentype");
     font-weight: 200;
     font-style: normal;
+}
+.v-enter-active {
+    transition: none;
+}
+
+.v-enter-from {
+    opacity: 1;
+}
+
+.v-leave-active {
+    transition: opacity 1s linear;
+}
+
+.v-leave-to {
+    opacity: 0;
+}
+
+.loader {
+    background: #f0f1e4;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    max-height: 100%;
+    max-width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 100;
+}
+
+.going-home-enter-active,
+.going-home-leave-active {
+    transition: all 0.3s linear;
+}
+
+.going-home-enter-from,
+.going-home-leave-to {
+    opacity: 0;
+}
+
+.going-home {
+    background: black;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    max-height: 100%;
+    max-width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 100;
 }
 
 #three-two {
@@ -81,7 +169,7 @@ onMounted(() => {
     width: 100%;
     min-height: 100vh;
     position: absolute;
-    background-image: url("Assets/images/about/0140.jpg");
+    background-image: url("Assets/images/about/0140.webp");
     background-size: 100% 100%;
     overflow: hidden;
 

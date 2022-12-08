@@ -7,7 +7,7 @@
 
 span {
     display: inline-block;
-    font-size: 1.5em;
+    font-size: 1.3em;
     background: $titleBaseColor;
     color: white;
     padding: 15px;

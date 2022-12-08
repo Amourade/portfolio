@@ -2,9 +2,9 @@
 import Button from "./Button.vue";
 </script>
 <template>
-    <Link href="/">
+    <a @click.prevent="$emit('changePage', '/')" href="/">
         <Button>X</Button>
-    </Link>
+    </a>
 </template>
 <style lang="scss" scoped>
 @import "Css/painting-variables.scss";

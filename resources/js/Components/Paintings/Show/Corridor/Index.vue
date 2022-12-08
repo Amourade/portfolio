@@ -3,17 +3,17 @@ import { computed } from "@vue/reactivity";
 import { onBeforeMount, reactive, ref } from "vue";
 import { useMouse } from "@/Components/Shared/mouse.js";
 import { useResize } from "@/Components/Shared/resize.js";
-import topTexture from "Assets/images/paintings/show/corridor/mur1.jpg";
-import bottomTexture from "Assets/images/paintings/show/corridor/mur4.jpg";
-import leftTexture from "Assets/images/paintings/show/corridor/mur2.jpg";
-import rightTexture from "Assets/images/paintings/show/corridor/mur3.jpg";
-import fond from "Assets/images/paintings/show/corridor/fondFleur.jpg";
-import paintingOne from "Assets/images/paintings/show/corridor/peinture1.jpg";
-import paintingTwo from "Assets/images/paintings/show/corridor/peinture2.jpg";
-import paintingThree from "Assets/images/paintings/show/corridor/peinture3.jpg";
-import paintingFour from "Assets/images/paintings/show/corridor/peinture4.jpg";
-import paintingFive from "Assets/images/paintings/show/corridor/peinture5.jpg";
-import paintingSix from "Assets/images/paintings/show/corridor/peinture6.jpg";
+import topTexture from "Assets/images/paintings/show/corridor/mur1.webp";
+import bottomTexture from "Assets/images/paintings/show/corridor/mur4.webp";
+import leftTexture from "Assets/images/paintings/show/corridor/mur2.webp";
+import rightTexture from "Assets/images/paintings/show/corridor/mur3.webp";
+import fond from "Assets/images/paintings/show/corridor/fondFleur.webp";
+import paintingOne from "Assets/images/paintings/show/corridor/peinture1.webp";
+import paintingTwo from "Assets/images/paintings/show/corridor/peinture2.webp";
+import paintingThree from "Assets/images/paintings/show/corridor/peinture3.webp";
+import paintingFour from "Assets/images/paintings/show/corridor/peinture4.webp";
+import paintingFive from "Assets/images/paintings/show/corridor/peinture5.webp";
+import paintingSix from "Assets/images/paintings/show/corridor/peinture6.webp";
 
 const emit = defineEmits(["loadNeeded", "loaded"]);
 

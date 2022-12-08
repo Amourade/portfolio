@@ -24,6 +24,7 @@ onUnmounted(() => {
 
 const doneLoading = computed(() => {
     return toLoad.value === loaded.value;
+    //return true;
 });
 </script>
 <template>
@@ -32,7 +33,7 @@ const doneLoading = computed(() => {
     </Head>
     <Transition appear>
         <div class="loader" v-if="!doneLoading">
-            <div class="inside">Loading...</div>
+            <!-- <div class="inside">Loading...</div> -->
         </div>
     </Transition>
 
@@ -46,7 +47,7 @@ const doneLoading = computed(() => {
         <div class="white-flash" v-if="gateOpen"></div>
         <div class="thumbs-list-wrapper" :class="{ hidden: gateOpen }">
             <div class="thumbs-list">
-                <div v-for="painting in paintings">
+                <div v-for="painting in paintings" :key="painting.slug">
                     <Thumbnail
                         @navigate="openGates"
                         :painting="painting"
@@ -110,7 +111,6 @@ const doneLoading = computed(() => {
         padding: 10px;
         background: rgba(255, 255, 255, 0.5);
         border-radius: 5px;
-        //border: 1px solid rgba(0,0,0,0.5);
         border: 1px solid white;
         box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.5);
         color: black;

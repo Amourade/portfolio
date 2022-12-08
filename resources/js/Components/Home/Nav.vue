@@ -1,13 +1,15 @@
 <script setup>
 import { reactive, ref, computed, onMounted, onBeforeMount } from "vue";
-import imagePeintures from "Assets/images/home/menu/peintures.jpg";
+import imagePeintures from "Assets/images/home/menu/peintures.webp";
 //import imagePeintures from "/images/home/menu/peintures.jpg";
-import imageDessins from "Assets/images/home/menu/dessins.jpg";
-import imageDigital from "Assets/images/home/menu/digital.jpg";
-import imageProjets from "Assets/images/home/menu/projets.jpg";
-import imageAPropos from "Assets/images/home/menu/a-propos.jpg";
-import fenetre from "Assets/images/home/menu/fenetre.png";
-import capsule from "Assets/images/home/menu/capsule-nav.png";
+import imageDessins from "Assets/images/home/menu/dessins.webp";
+import imageDigital from "Assets/images/home/menu/digital.webp";
+import imageProjets from "Assets/images/home/menu/projets.webp";
+import imageAPropos from "Assets/images/home/menu/a-propos.webp";
+import fenetre from "Assets/images/home/menu/fenetre.webp";
+import capsule from "Assets/images/home/menu/capsule-nav.webp";
+
+defineEmits(["changePage"]);
 
 const menuObj = [
     {
@@ -15,30 +17,35 @@ const menuObj = [
         img: imagePeintures,
         url: "/peintures",
         hovered: ref(false),
+        color: "linear-gradient(180deg, #ffffff 0%, #c3bfbb 33%, #96aab6 66%)",
     },
     {
         label: "Dessins",
         img: imageDessins,
         url: "/dessins",
         hovered: ref(false),
+        color: "#631c1c",
     },
     {
         label: "Peintures Digitales",
         img: imageDigital,
         url: "/digitaux",
         hovered: ref(false),
+        color: "#434b2d",
     },
     {
         label: "Projets",
         img: imageProjets,
         url: "/projets",
         hovered: ref(false),
+        color: "#71c2dd",
     },
     {
         label: "À Propos",
         img: imageAPropos,
         url: "/a-propos",
         hovered: ref(false),
+        color: "#f0f1e4",
     },
 ];
 
@@ -79,13 +86,16 @@ onMounted(() => {
 
 <template>
     <ul v-moveable :class="{ loaded: loadDone }">
-        <li v-for="item in menuObj">
-            <Link
+        <li v-for="item in menuObj" :key="item.url">
+            <a
+                @click.prevent="
+                    $emit('changePage', { url: item.url, color: item.color })
+                "
                 @mouseenter="item.hovered.value = true"
                 @mouseleave="item.hovered.value = false"
                 :href="item.url"
                 :style="{ backgroundImage: 'url(' + capsule + ')' }"
-                >{{ item.label }}</Link
+                >{{ item.label }}</a
             >
         </li>
     </ul>

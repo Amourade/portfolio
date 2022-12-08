@@ -1672,7 +1672,7 @@ function updateLoading() {
     </div>
     <!-- #primary -->
 </template>
-<style lang="scss">
+<style lang="scss" scoped>
 #primary {
     display: block;
     background: red;

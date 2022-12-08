@@ -1,14 +1,51 @@
-<script setup></script>
+<script setup>
+import { Inertia } from "@inertiajs/inertia";
+import { onMounted, onBeforeMount, watch, ref } from "vue";
+
+const toLoad = ref(0);
+const loaded = ref(0);
+const loadDone = ref(true);
+const goingHome = ref(false);
+
+onBeforeMount(() => {
+    loadDone.value = false;
+});
+
+onMounted(() => {
+    loadDone.value = true;
+});
+
+watch(loaded, (value) => {
+    if (value === toLoad.value) loadDone.value = true;
+});
+
+const changePage = (e) => {
+    goingHome.value = true;
+    setTimeout(() => {
+        Inertia.visit(e);
+    }, 150);
+};
+</script>
 <template>
     <Head>
         <title>CV</title>
     </Head>
+
+    <transition>
+        <div class="loader" v-if="!loadDone"></div>
+    </transition>
+
+    <Transition name="going-home">
+        <div class="going-home" v-if="goingHome"></div>
+    </Transition>
     <div id="cv">
         <div class="border right"></div>
         <div class="border left"></div>
         <div class="border top"></div>
         <div class="border bottom"></div>
-        <Link class="return" href="/">Retour à l'accueil - Home</Link>
+        <a @click.prevent="changePage('/')" class="return" href="/"
+            >Retour à l'accueil - Home</a
+        >
         <main>
             <h1>Antoine Thériault</h1>
 
@@ -91,7 +128,7 @@
         </main>
     </div>
 </template>
-<style lang="scss">
+<style lang="scss" scoped>
 @font-face {
     font-family: "UnifrakturMaguntia";
     font-style: normal;
@@ -102,10 +139,65 @@
         U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212,
         U+2215, U+FEFF, U+FFFD;
 }
+.v-enter-active {
+    transition: none;
+}
+
+.v-enter-from {
+    opacity: 1;
+}
+
+.v-leave-active {
+    transition: opacity 1s linear;
+}
+
+.v-leave-to {
+    opacity: 0;
+}
+
+.loader {
+    background: black;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    max-height: 100%;
+    max-width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 100;
+}
+
+.going-home-enter-active,
+.going-home-leave-active {
+    transition: all 0.3s linear;
+}
+
+.going-home-enter-from,
+.going-home-leave-to {
+    opacity: 0;
+}
+
+.going-home {
+    background: black;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    max-height: 100%;
+    max-width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 100;
+}
 
 #cv {
     font-family: "UnifrakturMaguntia";
-    background-image: url("Assets/images/cv/drapo_small.png");
+    background-image: url("Assets/images/cv/drapo_small.webp");
     background-position: right top;
     background-repeat: no-repeat;
     padding: 20px 35px 20px 35px;

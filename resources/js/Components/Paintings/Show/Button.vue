@@ -10,8 +10,8 @@ span {
     display: inline-block;
 
     color: white;
-    font-size: 1.1em;
-    line-height: 1.1em;
+    font-size: 1em;
+    line-height: 1em;
     border: 2px white outset;
     border-radius: 5px;
     box-shadow: 0px 0px 0px 1px #43536b, 25px 25px 15px rgba(0, 0, 0, 0.5);

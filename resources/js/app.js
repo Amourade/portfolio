@@ -9,7 +9,6 @@ import { ZiggyVue } from "../../vendor/tightenco/ziggy/dist/vue.m";
 import { Vue3Mq } from "vue3-mq";
 import { createManager } from "@vue-youtube/core";
 import moveable from "@/plugins/movable-elements/moveable";
-
 const appName =
     window.document.getElementsByTagName("title")[0]?.innerText ||
     "Antoine Thériault";
@@ -38,5 +37,3 @@ createInertiaApp({
             .mount(el);
     },
 });
-
-//InertiaProgress.init({ color: "#4B5563" });

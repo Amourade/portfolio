@@ -3,6 +3,7 @@ import moveableMove from "./moveableMove";
 import moveableStart from "./moveableMove";
 import moveableStop from "./moveableStop";
 import { Inertia } from "@inertiajs/inertia";
+import { isVNode } from "vue";
 
 export default function () {
     window.moveableData.el.classList.remove(window.moveableData.class.moving);
@@ -22,17 +23,11 @@ export default function () {
         return;
     }
 
-    console.log(window.moveableData.hasMoved);
-
     if (!window.moveableData.hasMoved && window.moveableData.targetLink) {
-        Inertia.visit(window.moveableData.targetLink);
-        //window.moveableData.el.click();
-        //window.location.href = window.moveableData.targetLink;
+        window.moveableData.targetLink.click();
     }
 
     if (!window.moveableData.hasMoved && window.moveableData.destination) {
-        //Inertia.visit(window.moveableData.targetLink);
-        //window.moveableData.el.click();
         window.location.href = window.moveableData.destination;
     }
 }
