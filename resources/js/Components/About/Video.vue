@@ -1,5 +1,5 @@
 <script setup>
-import { YoutubeIframe } from "@vue-youtube/component";
+import { YoutubeIframe } from "@/plugins/@vue-youtube/component";
 import { onMounted, ref } from "vue";
 
 const props = defineProps({

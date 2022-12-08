@@ -1,2 +1,5 @@
 *
+!/images
+!/thumbnails
+!/mediums
 !.gitignore
